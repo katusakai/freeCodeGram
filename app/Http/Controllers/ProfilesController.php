@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfilesController extends Controller
 {
-    public function index()
+    public function index($userId)
     {
-        return view('home');
+        $user = (User::find($userId));
+//        dd($user);
+        return view('home', [
+            'user' => $user,
+        ]);
     }
 }
