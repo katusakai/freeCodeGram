@@ -17,7 +17,7 @@ Route::get('/email', function () {
     return new \App\Mail\NewUserWelcomeMail();
 });
 
-Route::post('follow/{user}', 'FollowsController@store');
+Route::post('follow/{user}', 'FollowsController@store')->name('follow.user');
 
 Route::get('/', 'PostsController@index')->name('post.index');
 Route::get('/p/create', 'PostsController@create')->name('post.create');

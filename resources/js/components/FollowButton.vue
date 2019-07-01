@@ -6,7 +6,7 @@
 
 <script>
     export default {
-       props: ['userId', 'follows'],
+       props: ['userId', 'follows', 'routeLogin', 'routeFollow'],
 
         mounted() {
             console.log('Component mounted.')
@@ -20,13 +20,13 @@
 
        methods: {
            followUser() {
-              axios.post('/follow/' + this.userId)
+              axios.post(this.routeFollow)
                       .then(response => {
                          this.status = ! this.status;
                       })
                       .catch(errors => {
                          if (errors.response.status == 401) {
-                            window.location = '/login';
+                            window.location = this.routeLogin;
                          }
                       });
            }

@@ -1845,7 +1845,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['userId', 'follows'],
+  props: ['userId', 'follows', 'routeLogin', 'routeFollow'],
   mounted: function mounted() {
     console.log('Component mounted.');
   },
@@ -1858,11 +1858,11 @@ __webpack_require__.r(__webpack_exports__);
     followUser: function followUser() {
       var _this = this;
 
-      axios.post('/follow/' + this.userId).then(function (response) {
+      axios.post(this.routeFollow).then(function (response) {
         _this.status = !_this.status;
       })["catch"](function (errors) {
         if (errors.response.status == 401) {
-          window.location = '/login';
+          window.location = _this.routeLogin;
         }
       });
     }
