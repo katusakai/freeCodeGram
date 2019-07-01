@@ -6,8 +6,8 @@
     @foreach($posts as $post)
         <div class="row">
             <div class="col-6 offset-3">
-                <a href="/profile/{{$post->user->id}}">
-                    <img class="w-100" src="/storage/{{$post->image}}" alt="">
+                <a href="{{route('profile.show', ['user' => $post->user->id])}}">
+                    <img class="w-100" src="{{url('storage/' . $post->image)}}" alt="">
                 </a>
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class="col-6 offset-3">
                 <p>
                 <span class="font-weight-bold">
-                    <a href="/profile/{{$post->user->id}}">
+                    <a href="{{route('profile.show', ['user' => $post->user->id])}}">
                         <span class="text-dark">{{$post->user->username}}</span>
                     </a>
                 </span> {{$post->caption}}

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-3 p-5">
-            <img class="rounded-circle w-100" src="{{$user->profile->profileImage()}}" alt="">
+            <img class="rounded-circle w-100" src="{{url($user->profile->profileImage())}}" alt="">
         </div>
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
@@ -19,7 +19,7 @@
             </div>
             @can('update', $user->profile)
                 <div>
-                    <a href="/profile/{{$user->id}}/edit">Edit Profile</a>
+                    <a href="{{route('profile.edit', ['user' => $user->id])}}">Edit Profile</a>
                 </div>
             @endcan
             <div class="d-flex">
@@ -34,7 +34,7 @@
                 {{$user->profile->description}}
             </div>
             <div>
-                <a href="https://{{$user->profile->url}}">{{$user->profile->url ?? 'N/A'}}</a>
+                <a href="{{$user->profile->url}}">{{$user->profile->url ?? 'N/A'}}</a>
             </div>
         </div>
     </div>
@@ -42,8 +42,8 @@
     <div class="row pt-5">
         @foreach($user->posts as $post)
             <div class="col-4 pb-4">
-                <a href="/p/{{$post->id}}">
-                    <img class="w-100" src="/storage/{{$post->image}}" alt="">
+                <a href="{{route('post.show', ['post' => $post->id])}}">
+                    <img class="w-100" src="{{url('storage/' . $post->image)}}" alt="">
                 </a>
             </div>
         @endforeach
